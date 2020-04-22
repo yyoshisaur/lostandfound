@@ -82,9 +82,8 @@ windower.register_event('outgoing chunk', function(id, original, modified, injec
         local p = packets.parse('outgoing', original)
         if p['Category'] == 0x00 then
             local t = windower.ffxi.get_mob_by_id(p['Target'])
-            if track_mob_names:contains(t.name) then
+            if track_mob_names:contains(t.name) and track_zone:contains(windower.ffxi.get_info().zone) then
                 expend_mob_ids:add(t.id)
-                log('poke '..t.name..' '..t.index)
             end
         end
     end
