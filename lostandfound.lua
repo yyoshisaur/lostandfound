@@ -8,7 +8,7 @@ require('chat')
 local packets = require('packets')
 local texts = require('texts')
 
-odys_box = texts.new('${info}',{text={font='Consolas', size=12}, pos={x=200, y=200}, padding = 5, bg={alpha=125,}})
+laf_box = texts.new('${info}',{text={font='Consolas', size=12}, pos={x=200, y=200}, padding = 5, bg={alpha=125,}})
 
 local track_mob_names = S{'???',}
 local track_zone = S{55}
@@ -51,7 +51,7 @@ windower.register_event('prerender', function()
     local zone = windower.ffxi.get_info().zone
 
     if not me or not track_zone:contains(zone) then
-        odys_box:visible(false)
+        laf_box:visible(false)
         return
     end
 
@@ -70,10 +70,10 @@ windower.register_event('prerender', function()
     if lines:length() > 0 then
         lines:insert(1, 'Lost and Found ??? Tracker')
         lines:insert(2, string.text_color('Dir  Dist  Name', 255, 255,0))
-        odys_box.info = lines:concat('\n')
-        odys_box:visible(true)
+        laf_box.info = lines:concat('\n')
+        laf_box:visible(true)
     else
-        odys_box:visible(false)
+        laf_box:visible(false)
     end
 end)
 
